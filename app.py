@@ -29,8 +29,8 @@ def main():
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
 
-    # Convertion to int is needed as the environment variable is treated as string
-    checkingInterval = int(os.getenv("TADO_CHECK_INTERVAL",default = 10.0 )) # checking interval (in seconds)
+    # Convertion to float is needed as the environment variable is treated as string
+    checkingInterval = float(os.getenv("TADO_CHECK_INTERVAL",default = 10.0 )) # checking interval (in seconds)
     errorRetringInterval = 30.0 # retrying interval (in seconds), in case of an error
 
     enableLog = os.getenv("TADO_ENABLE_LOG", default = False) # activate the log with "True" or disable it with "False"
