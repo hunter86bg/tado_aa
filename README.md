@@ -1,4 +1,4 @@
-This repo is suitable for deploying tado_aa.py to Openshift/OKD    
+This repo is suitable for deploying tado_aa.py to Openshift/OKD (maybe Cloud)    
 For details check https://sascha-brockel.de/tado-auto-assist-kostenlos/ 
 
 # Install
