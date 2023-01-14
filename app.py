@@ -30,7 +30,7 @@ class MyHandler(BaseHTTPRequestHandler):
 def demonized():
     port = int(os.getenv("TADO_HEALTHCHECK_PORT", default = 8080 )) # Healthcheck port for Cloud Run (GCP)
     print(f"Starting status server on port {port}")
-    httpd = socketserver.TCPServer(("", port), MyHandler)
+    httpd = socketserver.TCPServer(("0.0.0.0", port), MyHandler)
     httpd.serve_forever()
 
 def main():
