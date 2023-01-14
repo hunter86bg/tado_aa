@@ -9,9 +9,29 @@ import inspect
 import os
 import logging
 
+import socketserver
+from http.server import BaseHTTPRequestHandler
 
 from datetime import datetime
 from PyTado.interface import Tado
+
+from threading import Thread
+
+class MyHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write("OK\n".encode("utf-8"))
+
+    def log_message(self, format, *args):
+        return
+
+def demonized():
+    port = int(os.getenv("TADO_HEALTHCHECK_PORT", default = 8080 )) # Healthcheck port for Cloud Run (GCP)
+    print(f"Starting status server on port {port}")
+    httpd = socketserver.TCPServer(("", port), MyHandler)
+    httpd.serve_forever()
 
 def main():
 
@@ -35,6 +55,11 @@ def main():
 
     enableLog = os.getenv("TADO_ENABLE_LOG", default = False) # activate the log with "True" or disable it with "False"
     logFile = os.getenv("TADO_LOG_FILE", default = "/var/log/tado.log")  # log file location
+    # To change status port , set TADO_HEALTHCHECK_PORT to a valid tcp port
+    
+    httpd = Thread(target=demonized)
+    httpd.setDaemon(True)
+    httpd.start()
 
     login()
     homeStatus()
