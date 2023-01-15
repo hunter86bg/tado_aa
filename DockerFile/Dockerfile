@@ -1,4 +1,4 @@
-ROM docker.io/rockylinux/rockylinux:9
+FROM docker.io/rockylinux/rockylinux:9
 MAINTAINER Strahil Nikolov <hunter86_bg@yahoo.com>
 ENV USERNAME 'myemail@example.com'
 ENV PASSWORD 'mypass'
