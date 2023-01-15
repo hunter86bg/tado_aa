@@ -16,5 +16,5 @@ ADD [ "https://raw.githubusercontent.com/hunter86bg/tado_aa/master/app.py", "${H
 ADD [ "https://raw.githubusercontent.com/hunter86bg/tado_aa/master/requirements.txt", "${HOME}/requirements.txt" ]
 RUN chown -R tado:tado $HOME
 USER tado
-RUN python3 -m pip install -r ${HOME}/requirements.txt --user
+RUN python3 -m pip install -r ${HOME}/requirements.txt --user --no-cache-dir
 ENTRYPOINT ["/usr/bin/python3", "-u", "./tado_aa.py" ]
