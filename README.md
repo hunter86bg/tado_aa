@@ -1,5 +1,7 @@
 This repo is suitable for deploying tado_aa.py to Openshift/OKD (maybe Cloud)    
 For details check https://sascha-brockel.de/tado-auto-assist-kostenlos/ 
+    
+For Google Cloud deployment check [GCR](./README_GoogleCloud.md)
 
 # Install
 ```sh
