@@ -2,7 +2,7 @@ FROM docker.io/rockylinux/rockylinux:9
 MAINTAINER Strahil Nikolov <hunter86_bg@yahoo.com>
 ENV USERNAME='myemail@example.com' \
     PASSWORD='mypass' \
-    TADO_CHECK_INTERVAL='30.0' \
+    TADO_CHECK_INTERVAL='10.0' \
     TADO_ENABLE_LOG='False' \
     TADO_LOG_FILE='/var/log/tado.log' \
     HOME='/tado'
