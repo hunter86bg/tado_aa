@@ -2,6 +2,7 @@
 # tado_aa.py (Tado Auto-Assist for Geofencing and Open Window Detection)
 # Created by Adrian Slabu <adrianslabu@icloud.com> on 11.02.2021
 # 
+# Adjusted for Docker usage
 
 import sys
 import time
@@ -92,10 +93,10 @@ def homeStatus():
     global devicesHome
 
     try:
-        homeState = t.getHomeState()["presence"]
+        homeState = t.get_home_state()["presence"]
         devicesHome = []
 
-        for mobileDevice in t.getMobileDevices():
+        for mobileDevice in t.get_mobile_devices():
             if (mobileDevice["settings"]["geoTrackingEnabled"] == True):
                 if (mobileDevice["location"] != None):
                     if (mobileDevice["location"]["atHome"] == True):
@@ -120,7 +121,7 @@ def homeStatus():
         elif (len(devicesHome) == 0 and homeState == "HOME"):
             printm ("Your home is in HOME Mode but are no devices at home.")
             printm ("Activating AWAY mode.")
-            t.setAway()
+            t.set_away()
             printm ("Done!")
         elif (len(devicesHome) > 0 and homeState == "AWAY"):
             if (len(devicesHome) == 1):
@@ -135,7 +136,7 @@ def homeStatus():
                 printm ("Your home is in AWAY Mode but the devices " + devices + " are at home.")
 
             printm ("Activating HOME mode.")
-            t.setHome()
+            t.set_home()
             printm ("Done!")
 
         devicesHome.clear()
@@ -166,20 +167,20 @@ def engine():
     while(True): # My solution to fix the "stack depth"
         try:
             #Open Window Detection
-            for z in t.getZones():
+            for z in t.get_zones():
                     zoneID = z["id"]
                     zoneName = z["name"]
-                    if (t.getOpenWindowDetected(zoneID)["openWindowDetected"] == True):
+                    if (t.get_open_window_detected(zoneID)["openWindowDetected"] == True):
                         printm (zoneName + ": open window detected, activating the OpenWindow mode.")
-                        t.setOpenWindow(zoneID)
+                        t.set_open_window(zoneID)
                         printm ("Done!")
                         printm ("Waiting for a change in devices location or for an open window..")
             #Geofencing
-            homeState = t.getHomeState()["presence"]
+            homeState = t.get_home_state()["presence"]
 
             devicesHome.clear()
 
-            for mobileDevice in t.getMobileDevices():
+            for mobileDevice in t.get_mobile_devices():
                 if (mobileDevice["settings"]["geoTrackingEnabled"] == True):
                     if (mobileDevice["location"] != None):
                         if (mobileDevice["location"]["atHome"] == True):
@@ -200,13 +201,13 @@ def engine():
                         else:
                             devices += devicesHome[i]
                     printm (devices + " are at home, activating HOME mode.")
-                t.setHome()
+                t.set_home()
                 printm ("Done!")
                 printm ("Waiting for a change in devices location or for an open window..")
 
             elif (len(devicesHome) == 0 and homeState == "HOME"):
                 printm ("Are no devices at home, activating AWAY mode.")
-                t.setAway()
+                t.set_away
                 printm ("Done!")
                 printm ("Waiting for a change in devices location or for an open window..")
 
