@@ -59,7 +59,7 @@ def main():
     # To change status port , set TADO_HEALTHCHECK_PORT to a valid tcp port
     
     httpd = Thread(target=demonized)
-    httpd.setDaemon(True)
+    httpd.daemon = True
     httpd.start()
 
     login()
@@ -207,7 +207,7 @@ def engine():
 
             elif (len(devicesHome) == 0 and homeState == "HOME"):
                 printm ("Are no devices at home, activating AWAY mode.")
-                t.set_away
+                t.set_away()
                 printm ("Done!")
                 printm ("Waiting for a change in devices location or for an open window..")
 
