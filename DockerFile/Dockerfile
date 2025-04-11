@@ -18,5 +18,5 @@ RUN chown -R tado:tado . && \
     chmod 755 $HOME && \
     chmod 644 ${HOME}/tado_aa.py
 USER tado
-RUN python3 -m pip install -r ./requirements.txt --user --no-cache-dir
+RUN python3 -m pip install -r ./requirements.txt --no-cache-dir
 ENTRYPOINT ["/usr/bin/python3", "-u", "./tado_aa.py" ]
