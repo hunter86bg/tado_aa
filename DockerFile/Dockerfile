@@ -14,7 +14,9 @@ RUN yum -y update && \
 WORKDIR $HOME
 ADD [ "https://raw.githubusercontent.com/hunter86bg/tado_aa/master/app.py", "./tado_aa.py" ]
 ADD [ "https://raw.githubusercontent.com/hunter86bg/tado_aa/master/requirements.txt", "./requirements.txt" ]
-RUN chown -R tado:tado .
+RUN chown -R tado:tado . && \
+    chmod 755 $HOME && \
+    chmod 644 ${HOME}/tado_aa.py
 USER tado
 RUN python3 -m pip install -r ./requirements.txt --user --no-cache-dir
 ENTRYPOINT ["/usr/bin/python3", "-u", "./tado_aa.py" ]
