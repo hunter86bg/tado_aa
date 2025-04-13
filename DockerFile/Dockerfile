@@ -1,4 +1,4 @@
-FROM docker.io/library/python:latest
+FROM docker.io/rockylinux/rockylinux:9
 MAINTAINER Strahil Nikolov <hunter86_bg@yahoo.com>
 ENV USERNAME='myemail@example.com' \
     PASSWORD='mypass' \
@@ -7,7 +7,7 @@ ENV USERNAME='myemail@example.com' \
     TADO_LOG_FILE='/var/log/tado.log' \
     HOME='/tado'
 RUN yum -y update && \
-    yum -y install python3-pip python3-requests git && \
+    yum -y install python3.12 python3.12-pip python3.12-requests git && \
     yum clean all && \
     groupadd -g 1001 tado && \
     useradd -c "Tado user" -d $HOME -m -g tado -u 1001 -s /usr/bin/bash tado
@@ -17,6 +17,6 @@ ADD [ "https://raw.githubusercontent.com/hunter86bg/tado_aa/master/requirements.
 RUN chown -R tado:tado . && \
     chmod 755 $HOME && \
     chmod 644 ${HOME}/tado_aa.py
-RUN python3 -m pip install -r ./requirements.txt --no-cache-dir
+RUN python3.12 -m pip install -r ./requirements.txt --no-cache-dir
 USER tado
 ENTRYPOINT ["/usr/bin/python3", "-u", "./tado_aa.py" ]
