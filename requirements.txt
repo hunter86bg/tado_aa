@@ -1,1 +1,1 @@
-git+https://github.com/hunter86bg/PyTado.git#egg=PyTado
+git+https://github.com/hunter86bg/PyTado.git#egg=python-tado
