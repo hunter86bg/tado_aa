@@ -1,1 +1,1 @@
-python-tado>=0.13.0
+git+https://github.com/hunter86bg/PyTado.git#egg=PyTado
