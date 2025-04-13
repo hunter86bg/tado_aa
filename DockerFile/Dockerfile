@@ -1,4 +1,4 @@
-FROM docker.io/rockylinux/rockylinux:9
+FROM docker.io/library/python:latest
 MAINTAINER Strahil Nikolov <hunter86_bg@yahoo.com>
 ENV USERNAME='myemail@example.com' \
     PASSWORD='mypass' \
