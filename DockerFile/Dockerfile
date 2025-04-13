@@ -5,6 +5,7 @@ ENV USERNAME='myemail@example.com' \
     TADO_CHECK_INTERVAL='10.0' \
     TADO_ENABLE_LOG='False' \
     TADO_LOG_FILE='/var/log/tado.log' \
+    TADO_TOKEN_FILE='/tmp/TADO_TOKEN_FILE' \
     HOME='/tado'
 RUN yum -y update && \
     yum -y install python3.12 python3.12-pip python3.12-requests git && \
