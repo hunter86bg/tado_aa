@@ -7,7 +7,7 @@ ENV USERNAME='myemail@example.com' \
     TADO_LOG_FILE='/var/log/tado.log' \
     HOME='/tado'
 RUN yum -y update && \
-    yum -y install python3-pip python3-requests && \
+    yum -y install python3-pip python3-requests git && \
     yum clean all && \
     groupadd -g 1001 tado && \
     useradd -c "Tado user" -d $HOME -m -g tado -u 1001 -s /usr/bin/bash tado
