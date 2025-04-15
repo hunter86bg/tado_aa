@@ -1,1 +1,2 @@
 git+https://github.com/hunter86bg/PyTado.git#egg=python-tado
+selenium>=4.31.0
